@@ -2,10 +2,8 @@
 import json
 
 from anthropic import Anthropic
-from dotenv import load_dotenv
 
-load_dotenv()
-
+# Credentials come from the `ant auth login` profile (or ANTHROPIC_API_KEY)
 client = Anthropic()
 model = "claude-opus-5-5"
 
@@ -99,6 +97,8 @@ add_user_message(
     "Output only the commands, one per line, no explanations.",
 )
 print(chat(messages))
+
+    
 
 
 # ---------------------------------------------------------------------------
