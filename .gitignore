@@ -1,0 +1,12 @@
+# Virtual environment
+.venv/
+
+# Secrets
+.env
+
+# Generated output
+dataset.json
+
+# Python cache
+__pycache__/
+*.pyc
