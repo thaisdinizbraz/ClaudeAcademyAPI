@@ -25,6 +25,13 @@ Generate the eval dataset (never overwrites an existing one):
 python evals/generate_dataset.py
 ```
 
+Run the prompt eval (makes paid API calls, two per test case):
+
+```bash
+python evals/run_eval.py            # all test cases
+python evals/run_eval.py --limit 3  # first 3 only
+```
+
 ## Current structure
 
 ```
@@ -40,8 +47,11 @@ ClaudeAcademyAPI/
 │   └── structured_data.py
 ├── evals/
 │   ├── generate_dataset.py      # run manually
-│   └── datasets/
-│       └── aws_tasks.json       # versioned
+│   ├── run_eval.py              # reads dataset, runs prompt, grades
+│   ├── graders.py               # code and model graders
+│   ├── datasets/
+│   │   └── aws_tasks.json       # versioned
+│   └── results/                 # gitignored, created by run_eval.py
 ├── pyproject.toml
 └── README.md
 ```

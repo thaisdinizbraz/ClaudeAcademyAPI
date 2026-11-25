@@ -10,3 +10,9 @@ __pycache__/
 
 # Package build metadata
 *.egg-info/
+
+# Eval run outputs
+evals/results/
+
+# Claude Code personal settings
+.claude/settings.local.json
