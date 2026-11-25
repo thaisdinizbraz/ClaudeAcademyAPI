@@ -7,3 +7,6 @@
 # Python cache
 __pycache__/
 *.pyc
+
+# Package build metadata
+*.egg-info/

@@ -1,0 +1,50 @@
+[
+  {
+    "task": "Write a Python function parse_s3_uri(uri) that takes a string like 's3://my-bucket/path/to/key.txt' and returns a tuple (bucket, key). If the URI has no key (e.g. 's3://my-bucket' or 's3://my-bucket/'), return (bucket, ''). Raise ValueError if the input is empty, does not start with 's3://', or has an empty bucket name.",
+    "format": "python"
+  },
+  {
+    "task": "Write a Python function parse_arn(arn) that splits an AWS ARN of the form 'arn:partition:service:region:account-id:resource' into a dict with keys 'partition', 'service', 'region', 'account_id', and 'resource'. The resource portion may itself contain ':' or '/' characters and must be kept intact. Region and account-id may be empty strings (e.g. 'arn:aws:s3:::my-bucket'). Raise ValueError if the string does not start with 'arn:' or has fewer than 6 colon-separated parts.",
+    "format": "python"
+  },
+  {
+    "task": "Write a Python function tags_to_dict(tags) that converts an AWS-style tag list such as [{'Key': 'Env', 'Value': 'prod'}, {'Key': 'Team', 'Value': 'core'}] into a dict {'Env': 'prod', 'Team': 'core'}. Return an empty dict for None or an empty list. If a tag entry lacks 'Value', map its key to an empty string. If a key appears more than once, the last occurrence wins. Skip entries that lack a 'Key'.",
+    "format": "python"
+  },
+  {
+    "task": "Write a Python function chunk_for_batch_write(items, size=25) that splits a list of DynamoDB items into a list of lists, each containing at most `size` items (DynamoDB BatchWriteItem limit is 25). Return an empty list for an empty input. Raise ValueError if size is not a positive integer or exceeds 25.",
+    "format": "python"
+  },
+  {
+    "task": "Write an AWS IAM policy JSON document (Version '2012-10-17') that allows s3:GetObject and s3:PutObject on all objects in the bucket 'app-uploads' only under the prefix 'users/', and allows s3:ListBucket on the bucket 'app-uploads' only when the s3:prefix condition matches 'users/*'. Use two separate statements with Sids 'ObjectAccess' and 'ListUsersPrefix'.",
+    "format": "json"
+  },
+  {
+    "task": "Write an S3 bucket lifecycle configuration JSON object (the value for the LifecycleConfiguration parameter of PutBucketLifecycleConfiguration) with a single enabled rule with ID 'archive-logs' that applies only to objects with prefix 'logs/', transitions them to GLACIER after 30 days, and expires them after 365 days.",
+    "format": "json"
+  },
+  {
+    "task": "Write an Amazon EventBridge event pattern JSON object that matches EC2 Instance State-change Notification events (source 'aws.ec2') only when the state is 'stopped' or 'terminated' and the event comes from region 'us-east-1'.",
+    "format": "json"
+  },
+  {
+    "task": "Write an AWS IAM policy JSON document (Version '2012-10-17') with a single Deny statement (Sid 'DenyAllOutsideRegions') that denies all actions on all resources when the request region (aws:RequestedRegion) is not 'us-east-1' or 'eu-west-1'. Edge case requirement: global services must not be blocked, so exclude 'iam:*', 'sts:*', and 'cloudfront:*' using NotAction instead of Action.",
+    "format": "json"
+  },
+  {
+    "task": "Write a regex that fully matches a valid AWS account ID: exactly 12 digits, with no spaces, dashes, or other characters. It must reject '12345678901' (11 digits), '1234567890123' (13 digits), '1234-5678-9012', and the empty string.",
+    "format": "regex"
+  },
+  {
+    "task": "Write a regex that fully matches a valid EC2 instance ID: the prefix 'i-' followed by either exactly 8 or exactly 17 lowercase hexadecimal characters (0-9, a-f). It must reject uppercase hex, other lengths (e.g. 'i-1234567'), a missing prefix, and the empty string.",
+    "format": "regex"
+  },
+  {
+    "task": "Write a regex that fully matches a valid S3 bucket name under these rules: 3 to 63 characters long; only lowercase letters, digits, dots, and hyphens; must begin and end with a lowercase letter or digit; must not contain two consecutive dots; and must not be formatted as an IPv4 address (e.g. '192.168.1.1'). Edge cases to reject include 'ab', 'My-Bucket', '-bucket', 'bucket-', 'my..bucket', and '10.0.0.1'.",
+    "format": "regex"
+  },
+  {
+    "task": "Write a regex that fully matches an AWS region code such as 'us-east-1', 'eu-west-2', 'ap-southeast-1', 'us-gov-west-1', or 'cn-north-1'. Format: a two-letter lowercase area code, an optional '-gov' segment, a hyphen, a direction (one of north, south, east, west, central, northeast, northwest, southeast, southwest), a hyphen, and a number from 1 to 9 with no leading zero. It must reject 'us-east', 'US-EAST-1', 'us-east-01', 'useast1', and the empty string.",
+    "format": "regex"
+  }
+]
